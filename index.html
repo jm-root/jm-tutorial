@@ -11,8 +11,12 @@
     <script src="js/marked.js"></script>
 
     <!-- HIGHLIGHT.JS -->
-    <link rel="stylesheet" href="css/github.css">
-    <script src="js/highlight.js"></script>
+    <!--<link rel="stylesheet" href="css/github.css">-->
+    <!--<script src="js/highlight.js"></script>-->
+
+    <!-- prism -->
+    <link rel="stylesheet" href="css/prism.css">
+    <script src="js/prism.js"></script>
 
     <!-- DITTO -->
     <link rel="stylesheet" href="css/ditto.css">
@@ -21,35 +25,36 @@
 
 </head>
 <body>
-    <!-- ESSENTIAL -->
-    <div id="sidebar"></div>
-    <div id="content"></div>
-    <div id="hide"></div>
+<!-- ESSENTIAL -->
+<div id="sidebar"></div>
+<div id="content"></div>
+<div id="hide"></div>
 
-    <!-- OPTIONAL -->
-    <div id="back_to_top">top</div>
-    <div id="edit">edit</div>
-    <div id="loading">Loading ...</div>
-    <div id="error"></div>
+<!-- OPTIONAL -->
+<div id="back_to_top">top</div>
+<div id="edit">edit</div>
+<div id="loading">Loading ...</div>
+<div id="error"></div>
 
-    <!-- DITTO -->
-    <script>
-        $(function($) {
-          // essential settings
-          ditto.index = "README.md",
-          ditto.sidebar_file = "sidebar.md",
+<!-- DITTO -->
+<script>
+    $(function($) {
+        // essential settings
+        ditto.index = "README.md",
+        ditto.sidebar_file = "sidebar.md",
 
-          // optional settings if you want github search
-          ditto.github_username = "jm-root";   // <------- EDIT ME!!
-          ditto.github_repo = "jm-tutorial";        // <------- EDIT ME!!
-          ditto.highlight_code = true;       // <------- EDIT ME!!
+        // optional settings if you want github search
+        ditto.github_username = "jm-root";   // <------- EDIT ME!!
+        ditto.github_repo = "jm-tutorial";        // <------- EDIT ME!!
+        ditto.highlight_code = false;       // <------- EDIT ME!!
+        ditto.prism_code = true;
 
-          // where the docs are actually stored on github - so you can edit
-          ditto.base_url = "https://github.com/jm-root/jm-tutorial/edit/develop";
+        // where the docs are actually stored on github - so you can edit
+        ditto.base_url = "https://github.com/jm-root/jm-tutorial/edit/develop";
 
-          // run
-          ditto.run();
-        });
-    </script>
+        // run
+        ditto.run();
+    });
+</script>
 </body>
 </html>

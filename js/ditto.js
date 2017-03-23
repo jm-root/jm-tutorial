@@ -398,6 +398,10 @@ $(function($) {
       $('pre code').each(function(i, block) {
         hljs.highlightBlock(block);
       });
+    } else if (ditto.prism_code) {
+        $('pre code').each(function(i, block) {
+            Prism.highlightElement(block);
+        });
     }
 
     if (cb) {
