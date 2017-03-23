@@ -233,11 +233,11 @@ EventEmitter 的核心就是事件触发与事件监听器功能的封装。
 ```javascript
 var emitter = jm.eventEmitter();
 //或者var emitter = new jm.EventEmitter()
-event.on('some_event', function() {
+emitter.on('some_event', function() {
 	console.log('some_event 事件触发');
 });
 setTimeout(function() {
-	event.emit('some_event');
+	emitter.emit('some_event');
 }, 1000);
 ```
 
