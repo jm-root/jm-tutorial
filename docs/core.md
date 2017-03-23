@@ -1,6 +1,7 @@
 # 核心库 Core
 [jm-core] (https://github.com/jm-root/jm-core)
 
+- 引入
 - 根 root
 - 错误定义 ERR
 - 日志 logger
@@ -11,8 +12,29 @@
     - 类的保留属性
 - 对象 Object
 - 事件 EventEmitter
+    - EventEmitter 简介
+    - EventEmitter#on(name, fn, caller)
+    - EventEmitter#once(name, fn, caller)
+    - EventEmitter#removeListener(name, fn, caller)
+    - EventEmitter#removeAllListeners(name)
+    - EventEmitter#listeners(name)
+    - EventEmitter#emit(name, arg1, arg2, arg3, arg4, arg5)
 - 标签对象 TagObject
 - 随机数 Random
+
+## 引入
+
+nodejs：
+
+```javascript
+var jm = require('jm-core');
+```
+
+browser：
+
+```
+<script src="dist/js/jm-core.js"></script>
+```
 
 ## 根 root
 
@@ -183,6 +205,120 @@ console.log(new ObjectB().className);
 ```
 
 ## 对象 Object
+
+父类 jm.Class 。
+
+Object#attr 批量设置对象属性。
+
+```javascript
+var obj = jm.object();
+obj.attr(
+    {
+        name: 'test',
+        value: 123
+    }
+);
+console.info(obj);
+```
+
 ## 事件 EventEmitter
+### EventEmitter 简介
+
+父类 jm.Object 。
+
+EventEmitter 的核心就是事件触发与事件监听器功能的封装。
+
+下面我们用一个简单的例子说明 EventEmitter 的用法：
+
+```javascript
+var emitter = jm.eventEmitter();
+//或者var emitter = new jm.EventEmitter()
+event.on('some_event', function() {
+	console.log('some_event 事件触发');
+});
+setTimeout(function() {
+	event.emit('some_event');
+}, 1000);
+```
+
+执行结果如下：
+
+运行这段代码，1 秒后控制台输出了 'some_event 事件触发'。 其原理是 event 对象注册了事件 some_event 的一个监听器，然后我们通过 setTimeout 在 1000 毫秒以后向 event 对象发送事件 some_event，此时会调用some_event 的监听器。
+
+EventEmitter 的每个事件由一个事件名和若干个参数组成，事件名是一个字符串，通常表达一定的语义。对于每个事件，EventEmitter 支持 若干个事件监听器。
+
+当事件触发时，注册到这个事件的事件监听器被依次调用，事件参数作为回调函数参数传递。
+
+让我们以下面的例子解释这个过程：
+
+```javascript
+var emitter = jm.eventEmitter();
+emitter.on('someEvent', function(arg1, arg2) {
+	console.log('listener1', arg1, arg2);
+});
+emitter.on('someEvent', function(arg1, arg2) {
+	console.log('listener2', arg1, arg2);
+});
+emitter.emit('someEvent', 'arg1 参数', 'arg2 参数');
+```
+
+执行以上代码，运行的结果如下：
+
+```javascript
+listener1 arg1 参数 arg2 参数
+listener2 arg1 参数 arg2 参数
+```
+
+以上例子中，emitter 为事件 someEvent 注册了两个事件监听器，然后触发了 someEvent 事件。
+
+运行结果中可以看到两个事件监听器回调函数被先后调用。 这就是EventEmitter最简单的用法。
+
+EventEmitter 提供了多个属性，如 on 和 emit。on 函数用于绑定事件函数，emit 属性用于触发一个事件。
+
+### EventEmitter#on(name, fn, caller)
+
+为指定事件注册一个监听器，接受一个字符串 name 、一个回调函数 fn 和回调函数调用主体 caller（可选）。
+
+```javascript
+server.on('connection', function (stream) {
+  console.log('someone connected!');
+});
+```
+
+### EventEmitter#once(name, fn, caller)
+
+为指定事件注册一个单次监听器，即 监听器最多只会触发一次，触发后立刻解除该监听器。
+
+```javascript
+server.once('connection', function (stream) {
+  console.log('Ah, we have our first user!');
+});
+```
+
+### EventEmitter#removeListener(name, fn, caller)
+
+移除指定事件的某个监听器，监听器 必须是该事件已经注册过的监听器。
+
+```javascript
+var callback = function(stream) {
+  console.log('someone connected!');
+};
+server.on('connection', callback);
+// ...
+server.removeListener('connection', callback);
+```
+
+### EventEmitter#removeAllListeners(name)
+
+移除所有事件的所有监听器， 如果指定事件，则移除指定事件的所有监听器。
+
+### EventEmitter#listeners(name)
+
+返回指定事件的监听器数组。
+
+### EventEmitter#emit(name, arg1, arg2, arg3, arg4, arg5)
+
+按参数的顺序执行每个监听器。
+
 ## 标签对象 TagObject
 ## 随机数 Random
