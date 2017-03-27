@@ -52,6 +52,8 @@ jm.object = function(){
 
 核心库 Core [jm-core] (https://github.com/jm-root/jm-core)
 
+Log4js日志 Log4js [jm-log4js] (https://github.com/jm-root/jm-log4js)
+
 AJAX库 Ajax [jm-ajax] (https://github.com/jm-root/jm-ajax)
 
 微服务 MS [jm-ms] (https://github.com/jm-root/jm-ms)
@@ -83,3 +85,7 @@ AJAX库 Ajax [jm-ajax] (https://github.com/jm-root/jm-ajax)
 Gate服务器 Gate [jm-gate] (https://github.com/jm-root/jm-gate)
 
 IP数据库 IP [jm-ip] (https://github.com/jm-root/jm-ip)
+
+AOP库 Aop [jm-aop] (https://github.com/jm-root/jm-aop)
+
+类 Class [jm-class] (https://github.com/jm-root/jm-class)

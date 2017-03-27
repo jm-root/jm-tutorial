@@ -14,6 +14,7 @@
 1. [前言](#README)
 1. [简介](#docs/intro)
 1. [Core](#docs/core)
+1. [Log4js](#docs/log4js)
 1. [Ajax](#docs/ajax)
 1. [MS](#docs/ms)
 1. [MQ](#docs/mq)
@@ -30,6 +31,8 @@
 1. [OMS](#docs/oms)
 1. [Gate](#docs/gate)
 1. [IP](#docs/ip)
+1. [AOP](#docs/aop)
+1. [Class](#docs/class)
 
 ## 其他
 - [源码](https://github.com/jm-root/jm-tutorial/)

@@ -9,12 +9,7 @@
 - 错误定义 ERR
 - 日志 logger
 - 工具 utils
-- 类 Class
-    - 类的定义
-    - 类的继承
-    - 类的保留属性
-- 对象 Object
-- 事件 EventEmitter
+- 事件 event
     - EventEmitter 简介
     - EventEmitter#on(name, fn, caller)
     - EventEmitter#once(name, fn, caller)
@@ -22,8 +17,8 @@
     - EventEmitter#removeAllListeners(name)
     - EventEmitter#listeners(name)
     - EventEmitter#emit(name, arg1, arg2, arg3, arg4, arg5)
-- 标签对象 TagObject
-- 随机数 Random
+- 标签 tag
+- 随机数 random
 
 ## 引入
 install：
@@ -35,8 +30,8 @@ npm install --save jm-core
 ES6：
 
 ```javascript
-import _ from 'jm-core';
-let jm = _();
+import JM from 'jm-core';
+let jm = new JM();
 jm.logger.debug('works.');
 
 ```
@@ -44,7 +39,8 @@ jm.logger.debug('works.');
 node：
 
 ```javascript
-var jm = require('jm-core')();
+var JM = require('jm-core');
+var jm = new JM();
 jm.logger.debug('works.');
 
 //也可以采用全局变量jm，不推荐
@@ -112,11 +108,11 @@ module.exports = function ($, name) {
 ES6：
 
 ```javascript
-import $ from 'jm-core';
+import JM from 'jm-core';
 import module1 from './module1';
 
 //加载
-let jm = $()
+let jm = new JM()
         .use(module1)
     ;
 
@@ -131,11 +127,11 @@ jm.unuse ('module1');
 node：
 
 ```javascript
-var $ = require('jm-core');
+var JM = require('jm-core');
 var module1 = require('./module1');
 
 //加载
-var jm = $()
+var jm = new JM()
         .use(module1)
     ;
 
@@ -206,121 +202,6 @@ var obj = {
 };
 
 jm.utils.formatJSON(obj);
-```
-
-## 类 Class
-### 类的定义
-```javascript
-var Object = jm.Class.extend({
-    //类的名称
-    _className: 'object',
-
-    //构造函数
-    ctor: function (opts) {
-        this._name = 'test';
-    },
-
-    //类的属性定义
-    properties: {
-        name: { get: 'getName', set: 'setName' }
-    },
-
-    getName: function() {
-        return this._name;
-    },
-
-    setName: function(name) {
-        this._name = name;
-    },
-
-    //类的方法定义
-    method1: function(opts, cb) {
-        cb(null, true);
-    }
-});
-
-//test
-var obj = new Object();
-console.log(obj.name);
-```
-
-### 类的继承
-
-```javascript
-var Object = jm.Class.extend({
-    //类的名称
-    _className: 'object',
-
-    //构造函数
-    ctor: function (opts) {
-        console.log('Object ctor called');
-        this._name = 'test';
-    },
-
-    //类的方法定义
-    method1: function(opts, cb) {
-        console.log('Object.method1 called');
-        cb(null, true);
-    }
-});
-
-var ObjectB = Object.extend({
-    //类的名称
-    _className: 'objectB',
-
-    //构造函数
-    ctor: function (opts) {
-        //调用父级构造函数
-        this._super(opts);
-        this._name = 'testB';
-        console.log('ObjectB ctor called');
-    },
-
-    //类的方法定义
-    method1: function(opts, cb) {
-        //调用父级函数
-        this._super(opts, cb);
-        console.log('ObjectB.method1 called');
-    }
-});
-
-//test
-var obj = new ObjectB();
-obj.method1(null, function(err, doc){
-    console.log(doc);
-});
-```
-
-### 类的保留属性
-
-className 被定义为只读属性，表示类的名称，在类定义时通过 _className 赋值，如果没有赋值，则继承父类的值。
-
-```javascript
-var Object = jm.Class.extend({
-    _className: 'object',
-});
-var ObjectB = Object.extend({
-});
-console.log(new Object().className);
-console.log(new ObjectB().className);
-//输出 object
-```
-
-## 对象 Object
-
-父类 jm.Class 。
-
-Object#attr 批量设置对象属性。
-
-```javascript
-var obj = jm.object();
-obj.attr(
-    {
-        name: 'test',
-        value: 123
-    }
-);
-console.info(obj);
 ```
 
 ## 事件 EventEmitter
@@ -422,5 +303,5 @@ server.removeListener('connection', callback);
 
 按参数的顺序执行每个监听器。
 
-## 标签对象 TagObject
+## 标签 tag
 ## 随机数 Random
