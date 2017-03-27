@@ -2,7 +2,10 @@
 [jm-core] (https://github.com/jm-root/jm-core)
 
 - 引入
-- 根 root
+- 模块 module
+    - 模块化设计
+    - 模块的定义
+    - 模块的加载、使用和卸载
 - 错误定义 ERR
 - 日志 logger
 - 工具 utils
@@ -23,11 +26,31 @@
 - 随机数 Random
 
 ## 引入
-
-nodejs：
+install：
 
 ```javascript
-var jm = require('jm-core');
+npm install --save jm-core
+```
+
+ES6：
+
+```javascript
+import _ from 'jm-core';
+let jm = _();
+jm.logger.debug('works.');
+
+```
+
+node：
+
+```javascript
+var jm = require('jm-core')();
+jm.logger.debug('works.');
+
+//也可以采用全局变量jm，不推荐
+require('jm-core');
+jm.logger.debug('works.');
+
 ```
 
 browser：
@@ -36,13 +59,92 @@ browser：
 <script src="dist/js/jm-core.js"></script>
 ```
 
-## 根 root
+## 模块 module
+### 模块化设计
 
-***注意，开发人员一般不需要使用 jm.root 。***
+为了方便扩展， jm 采用了模块化设计理念，一切都是模块。
 
-jm.root 类似于 global，用于存放公共变量。
+模块可以动态加载和卸载。
 
-jm.root.registries 为 jm 的注册表。
+### 模块的定义
+
+ES6：
+
+```javascript
+// module1.js
+export default ($, name = 'module1') => {
+    $[name] = {
+        toString: () => {
+            return 'this is a module';
+        }
+    };
+    return {
+        name: name,
+        unuse: ($) => {
+            delete $[name];
+        }
+    };
+};
+```
+
+node：
+
+```javascript
+// module1.js
+module.exports = function ($, name) {
+    name || (name = 'module1');
+    $[name] = {
+        toString: function () {
+            return 'this is a module';
+        }
+    };
+    return {
+        name: name,
+        unuse: function (_) {
+            delete $[name];
+        }
+    };
+};
+```
+
+### 模块的加载、使用和卸载
+
+ES6：
+
+```javascript
+import $ from 'jm-core';
+import module1 from './module1';
+
+//加载
+let jm = $()
+        .use(module1)
+    ;
+
+// 使用加载的模块
+jm.logger.debug(jm.module1.toString());
+
+//卸载
+jm.unuse ('module1');
+
+```
+
+node：
+
+```javascript
+var $ = require('jm-core');
+var module1 = require('./module1');
+
+//加载
+var jm = $()
+        .use(module1)
+    ;
+
+// 使用加载的模块
+jm.logger.debug(jm.module1.toString());
+
+//卸载
+jm.unuse ('module1');
+```
 
 ## 错误定义 ERR
 
