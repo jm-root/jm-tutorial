@@ -27,6 +27,7 @@
 1. [Config](#docs/config)
 1. [ACL](#docs/acl)
 1. [SSO](#docs/sso)
+1. [ApiGateway](#docs/apigateway)
 1. [User](#docs/user)
 1. [OMS](#docs/oms)
 1. [Gate](#docs/gate)
