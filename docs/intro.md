@@ -78,7 +78,7 @@ AJAX库 Ajax [jm-ajax] (https://github.com/jm-root/jm-ajax)
 
 单点登陆 SSO [jm-sso] (https://github.com/jm-root/jm-sso)
 
-Api路由服务器 ApiGateway [jm-apigateway] (https://github.com/jm-root/jm-apigateway)
+路由服务器 Gateway [jm-gateway] (https://github.com/jm-root/jm-gateway)
 
 通用用户模块 User [jm-user] (https://github.com/jm-root/jm-user)
 
