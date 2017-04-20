@@ -21,13 +21,14 @@
 - 随机数 random
 
 ## 引入
-install：
+
+- install
 
 ```javascript
 npm install --save jm-core
 ```
 
-ES6：
+- ES6
 
 ```javascript
 import JM from 'jm-core';
@@ -36,7 +37,7 @@ jm.logger.debug('works.');
 
 ```
 
-node：
+- node
 
 ```javascript
 var JM = require('jm-core');
@@ -49,10 +50,13 @@ jm.logger.debug('works.');
 
 ```
 
-browser：
+- browser
 
 ```
 <script src="dist/js/jm-core.js"></script>
+<script>
+    jm.logger.debug('works.');
+</script>
 ```
 
 ## 模块 module
