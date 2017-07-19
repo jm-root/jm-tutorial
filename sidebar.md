@@ -13,7 +13,10 @@
 ## 目录
 1. [前言](#README)
 1. [简介](#docs/intro)
-1. [Core](#docs/core)
+1. [Module](#docs/module)
+1. [Event](#docs/event)
+1. [Err](#docs/err)
+1. [Logger](#docs/logger)
 1. [Log4js](#docs/log4js)
 1. [Ajax](#docs/ajax)
 1. [MS](#docs/ms)

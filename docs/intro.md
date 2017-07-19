@@ -2,55 +2,82 @@
 
 - 概述
 - JM 约定
+- JM 典型微服务架构方案
 - JM 包含的开源项目
 
 ## 概述
 
-JM 是基于 JavaScript 语言实现的一组开源项目的集合。它的目标，是使得 JM 可以用来快速开发和部署应用程序。
+JM 是一组开源项目的集合。它的目标，是用来快速开发和部署基于微服务架构的应用程序。
 
 ## JM 约定
 
-所有子项目都被定义在命名空间 jm 内，从而防止定义冲突。
+首字母大写为类，小写为函数、对象或者变量，类名首字母小写为实例化该类的函数。
+
+为了支持浏览器中使用，定义了公共命名空间jm（相当于定义了global.jm），从而防止定义冲突。
 
 ```javascript
 //例如
-jm.Class
-jm.Object
+jm.EventEmitter
+jm.Err
+jm.utils
 jm.ajax
 ```
 
-首字母大写为类，小写为函数、对象或者变量，类名首字母小写为实例化该类的函数。
+node中可以直接使用公共命名空间，但是不推荐。
 
 ```javascript
-//jm.Object为类
-var obj = new jm.Object();
+var event = require('jm-event');
 
-//等同于
-var obj = jm.object();
+//推荐
+var e = new event.EventEmitter();
 
-//jm.Object 和 jm.object 的原始定义如下
-jm.Object = jm.Class.extend({
-    _className: 'object',
+//可以用，但不推荐
+var e = new jm.EventEmitter();
 
-    attr: function (attrs) {
-        for (var key in attrs) {
-            if(key === 'className'){
-                continue;
-            }
-
-            this[key] = attrs[key];
-        }
-    }
-});
-
-jm.object = function(){
-    return new jm.Object();
-};
 ```
+
+ES6中的用法：
+
+```javascript
+import event from 'jm-event';
+
+//推荐
+var e = new event.EventEmitter();
+
+//可以用，但不推荐
+var e = new jm.EventEmitter();
+
+```
+
+## JM 典型微服务架构方案
+
+Gateway负责转发请求到对应的微服务，Config服务完成统一配置，Passport负责用户注册登陆，SSO负责单点登陆，ACL负责鉴权。
+
+所有服务都基于jm-server实现。
+
+jm-server是一个通用服务器框架，这样开发者可以把精力集中在对于服务及路由的定义和实现，而不必关注底层的实现。特别的，由于jm-server采用了模块化设计，开发者可以灵活的把多个微服务集中在一个jm-server中部署，这样可以兼容传统的软件开发模式，更加灵活。
+
+jm-ms作为JM微服务架构的核心模块，提供一种新的路由定义方式，定义一次可以支持多种通讯协议，例如Http，Websocket甚至UDP等等，这带来的好处是部署时更加灵活，例如对于最终用户提供Http协议，而对于微服务之间的通讯采用更加高效的Websocket协议或者UDP协议。
+
+module提供模块化支持。
+
+event提供一个通用的轻量级的事件机制。
+
+logger提供日志服务。
+
+err定义了常用的错误。
+
+![](../images/plan.svg)
 
 ## JM 包含的开源项目
 
-核心库 Core [jm-core] (https://github.com/jm-root/jm-core)
+模块 Module [jm-module] (https://github.com/jm-root/jm-module)
+
+事件 Event [jm-event] (https://github.com/jm-root/jm-event)
+
+错误 Err [jm-err] (https://github.com/jm-root/jm-err)
+
+日志 Logger [jm-logger] (https://github.com/jm-root/jm-logger)
 
 Log4js日志 Log4js [jm-log4js] (https://github.com/jm-root/jm-log4js)
 
