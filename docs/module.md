@@ -62,7 +62,8 @@ ES6：
 
 ```javascript
 // module1.js
-export default ($, name = 'module1') => {
+export default function (name = 'module1') {
+    var $ = this;
     $[name] = {
         toString: () => {
             return 'this is a module';
@@ -81,7 +82,8 @@ node：
 
 ```javascript
 // module1.js
-module.exports = function ($, name) {
+module.exports = function (name) {
+    var $ = this;
     name || (name = 'module1');
     $[name] = {
         toString: function () {
