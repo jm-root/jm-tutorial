@@ -89,7 +89,7 @@ var router = ms.router();
 // 为路由器添加路由规则,支持多种方式,支持链式
 router
     .add('/hello', 'get', service.hello)
-    .add({uri: '/hello2', 'get', fn: service.hello2})
+    .add({uri: '/hello2', type: 'get', fn: service.hello2})
     .use('/hello3', service.hello);
     .use({uri: '/hello4', fn: service.hello})
 ;
