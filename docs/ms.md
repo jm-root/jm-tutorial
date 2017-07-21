@@ -4,9 +4,6 @@
 - 为什么
 - 简介
 - ms-core
-- ms
-- ms-http
-- ms-ws
 
 ## 为什么
 
@@ -24,7 +21,7 @@
 
 ## 简介
 
-![](../images/ms.svg)。
+![](../images/ms.svg)
 
 ## ms-core
 ms-core是ms的核心，下面用代码例子描述其主要功能。
@@ -109,7 +106,3 @@ router.get('/hello', data, cb);
 ### server
 ### client
 ### proxy
-
-## ms
-## ms-http
-## ms-ws
