@@ -2,7 +2,7 @@
 
 作者：[于晓杰](https://github.com/jammacn)
 
-版本：0.0.1
+版本：0.0.2
 
 授权：<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">署名-非商用许可证</a>
 
