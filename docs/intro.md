@@ -51,7 +51,7 @@ Log4js日志 Log4js [jm-log4js] (https://github.com/jm-root/jm-log4js)
 
 配置服务 Config [jm-config] (https://github.com/jm-root/jm-config)
 
-鉴权服务 ACL [jm-acl] (https://github.com/jm-root/jm-acl)
+鉴权服务 ACL [acl] (https://github.com/jm-root/acl)
 
 单点登陆服务 SSO [jm-sso] (https://github.com/jm-root/jm-sso)
 
@@ -59,6 +59,6 @@ Log4js日志 Log4js [jm-log4js] (https://github.com/jm-root/jm-log4js)
 
 通行证服务 Passport [passport] (https://github.com/jm-root/passport)
 
-消息服务 MQ [jm-mq] (https://github.com/jm-root/mq)
+消息服务 MQ [mq] (https://github.com/jm-root/mq)
 
 数据库访问库 db [db] (https://github.com/jm-root/db)
