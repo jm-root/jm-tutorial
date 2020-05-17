@@ -20,45 +20,6 @@
 - 标签 tag
 - 随机数 random
 
-## 引入
-
-- install
-
-```javascript
-npm install --save jm-core
-```
-
-- ES6
-
-```javascript
-import JM from 'jm-core';
-let jm = new JM();
-jm.logger.debug('works.');
-
-```
-
-- node
-
-```javascript
-var JM = require('jm-core');
-var jm = new JM();
-jm.logger.debug('works.');
-
-//也可以采用全局变量jm，不推荐
-require('jm-core');
-jm.logger.debug('works.');
-
-```
-
-- browser
-
-```
-<script src="dist/js/jm-core.js"></script>
-<script>
-    jm.logger.debug('works.');
-</script>
-```
-
 ## 模块 module
 ### 模块化设计
 
